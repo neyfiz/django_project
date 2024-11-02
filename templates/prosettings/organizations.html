@@ -7,23 +7,23 @@
     <h1 class="text-left mb-4">Teams</h1>
     <div class="row">
         {% for organization in organizations %}
-            <div class="col-md-4 col-lg-3 mb-4"> <!-- Колонки для адаптивного дизайна -->
+        <div class="col-md-4 col-lg-3 mb-4">
+            <a href="{% url 'organization_detail' organization.id %}" class="text-decoration-none text-dark">
                 <div class="card text-center shadow-sm" style="width: 247px; height: 267px;">
-                    <a href="{% url 'organization_detail' organization.id %}" class="text-decoration-none text-dark">
-                        <div class="p-3">
-                            {% if organization.logo %}
-                                <img src="{{ organization.logo.url }}" alt="{{ organization.name }} logo" class="img-fluid" style="width: 120px; height: 100px; object-fit: cover; margin-top: 20px;">
-                            {% else %}
-                                <div class="p-3">No logo available for {{ organization.name }}</div>
-                            {% endif %}
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title mt-3">{{ organization.name }}</h5>
-                        </div>
-                    </a>
+                    <div class="p-3">
+                        {% if organization.logo %}
+                            <img src="{{ organization.logo.url }}" alt="{{ organization.name }} logo" class="img-fluid" style="width: 120px; height: 100px; object-fit: cover; margin-top: 20px;">
+                        {% else %}
+                            <div class="p-3">No logo available for {{ organization.name }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title mt-3">{{ organization.name }}</h5>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            </a>
+        </div>
+    {% endfor %}
     </div>
 </div>
 {% endblock %}
