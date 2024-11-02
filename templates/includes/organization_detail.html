@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ organization.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ organization.name }}</h1>
+<p>{{ organization.description }}</p>
+
+{% for team in organization.teams.all %}  {# Итерируемся по командам организации #}
+    <h2>{{ team.game.name }} Player Roster</h2>  {# Выводим название игры для команды #}
+
+    <ul>
+        {% for player in team.players.all %}  {# Получаем игроков из команды #}
+            <li><a href="{% url 'player_detail' player.id %}">{{ player.nickname }}</a></li>
+        {% endfor %}
+    </ul>
+{% empty %}  {# Если команды отсутствуют #}
+    <p>No teams available for this organization.</p>
+{% endfor %}
+{% endblock %}

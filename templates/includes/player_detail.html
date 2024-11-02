@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Player Detail{% endblock %}
+
+{% block content %}
+<h1>{{ player.nickname }}</h1>
+<p><strong>Name:</strong> {{ player.name }}</p>
+<p><strong>Team:</strong>
+    {% if player.team %}
+        <a href="{% url 'team_detail' player.team.id %}">{{ player.team.name }}</a>
+    {% else %}
+        No team available.
+    {% endif %}
+</p>
+<p><strong>Country:</strong> {{ player.country }}</p>
+<p><strong>Birth Date:</strong> {{ player.birth_date|date:"F d, Y" }}</p>
+{% endblock %}

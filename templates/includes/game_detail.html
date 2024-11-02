@@ -1,0 +1,18 @@
+<!-- templates/prosettings/game_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ game.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ game.name }}</h1>
+<p>{{ game.description }}</p>
+
+<h2>Players</h2>
+<ul>
+    {% for player in game.players.all %}
+        <li><a href="{% url 'player_detail' player.id %}">{{ player.nickname }}</a></li>
+    {% empty %}
+        <li>No players found for this game.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

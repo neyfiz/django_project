@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Players{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-left mb-4">Players</h1>
+    <div class="row">
+        {% for player in players %}
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card text-center shadow-sm" style="width: 247px; height: 267px;">
+                    <a href="{% url 'player_detail' player.id %}" class="text-decoration-none text-dark">
+                        <div class="p-3">
+                            {% if player.avatar %}
+                                <img src="{{ player.avatar.url }}" alt="{{ player.nickname }} avatar" class="img-fluid" style="width: 120px; height: 100px; object-fit: cover; margin-top: 20px;">
+                            {% else %}
+                                <div class="p-3">No avatar available for {{ player.nickname }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">{{ player.nickname }}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                    No players available.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

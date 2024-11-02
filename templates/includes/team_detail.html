@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Team Detail{% endblock %}
+
+{% block content %}
+<h1>{{ team.name }}</h1>
+
+{% if team.logo %}
+    <img src="{{ team.logo.url }}" alt="{{ team.name }} logo" width="100">
+{% else %}
+    <p>No logo available for {{ team.name }}</p>
+{% endif %}
+
+<h2>Player Roster</h2>
+<ul>
+    {% for player in team.players.all %}
+        <li><a href="{% url 'player_detail' player.id %}">{{ player.nickname }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
